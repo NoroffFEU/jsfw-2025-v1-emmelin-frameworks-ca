@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
+import Header from "./components/Header";
 import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart";
 import ContactPage from "./pages/ContactPage";
@@ -9,6 +10,7 @@ import CheckoutSuccess from "./pages/CheckoutSuccess";
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<ProductPage />} />
