@@ -3,10 +3,12 @@ import { useParams } from "react-router-dom";
 
 import { fetchProductById } from "../api/products";
 import type { Product } from "../types/product";
+import { useCart } from "../context/useCart";
 import styles from "./ProductPage.module.css";
 
 function ProductPage() {
   const { id } = useParams<{ id: string }>();
+  const { addToCart } = useCart();
 
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -67,7 +69,9 @@ function ProductPage() {
             </strong>
           </div>
 
-          <button className={styles.button}>Add to Cart</button>
+          <button className={styles.button} onClick={() => addToCart(product)}>
+            Add to Cart
+          </button>
 
           <h2>Tags</h2>
           <div className={styles.tags}>
