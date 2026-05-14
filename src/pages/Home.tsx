@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchProducts } from "../api/products";
 import type { Product } from "../types/product";
+import { ProductCard } from "../components/ProductCard";
+import styles from "./Home.module.css";
 
 function Home() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -26,18 +28,11 @@ function Home() {
   }
 
   return (
-    <main>
-      <h1>Products</h1>
-      <div>
+    <main className={styles.container}>
+      <h1 className={styles.title}>Products</h1>
+      <div className={styles.productGrid}>
         {products.map((product) => (
-          <div key={product.id}>
-            <img src={product.image.url} alt={product.image.alt} width="200" />
-
-            <h2>{product.title}</h2>
-            <p>{product.description}</p>
-            <p>{product.price}</p>
-            <p>{product.rating}</p>
-          </div>
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </main>
