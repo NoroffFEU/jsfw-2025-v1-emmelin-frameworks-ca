@@ -1,9 +1,27 @@
 import { CartContext, type CartItem } from "./cartTypes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Product } from "../types/product";
 
+const CART_STORAGE_KEY = "cartItems";
+
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+
+    if (!savedCart) {
+      return [];
+    }
+
+    try {
+      return JSON.parse(savedCart) as CartItem[];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+  }, [cartItems]);
 
   function addToCart(product: Product) {
     setCartItems((currentItems) => {

@@ -1,15 +1,22 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../context/useCart";
+import styles from "./Header.module.css";
 
 function Header() {
-  const { cartItems } = useCart();
+  const { cartCount } = useCart();
 
   return (
-    <header>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/">Products</Link>
-        <Link to="/cart">Cart ({cartItems.length})</Link>
+    <header className={styles.header}>
+      <nav className={styles.nav}>
+        <Link to="/" className={styles.link}>
+          Home
+        </Link>
+        <Link to="/" className={styles.link}>
+          Products
+        </Link>
+        <Link to="/cart" className={styles.cart}>
+          Cart ({cartCount})
+        </Link>
       </nav>
     </header>
   );
