@@ -14,6 +14,9 @@ function Header() {
         <Link to="/" className={styles.link}>
           Products
         </Link>
+        <Link to="/contact" className={styles.link}>
+          Contact
+        </Link>
         <Link to="/cart" className={styles.cart}>
           Cart ({cartCount})
         </Link>
