@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../context/useCart";
 
 function Cart() {
@@ -28,7 +29,7 @@ function Cart() {
 
           <h2>{item.title}</h2>
           <p>{item.description}</p>
-          <p>Price: ${item.discountedPrice} kr</p>
+          <p>Price: {item.discountedPrice} kr</p>
 
           <div>
             <button onClick={() => decreaseQuantity(item.id)}>-</button>
@@ -40,11 +41,11 @@ function Cart() {
         </article>
       ))}
 
-      <h2>Total: ${cartTotal.toFixed(2)} kr</h2>
+      <h2>Total: {cartTotal.toFixed(2)} kr</h2>
 
       <button onClick={clearCart}>Clear Cart</button>
 
-      <button>Checkout</button>
+      <Link to="/checkout-success">Checkout</Link>
     </main>
   );
 }
