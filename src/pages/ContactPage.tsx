@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./ContactPage.module.css";
 
 function ContactPage() {
   const [fullName, setFullName] = useState("");
@@ -49,7 +50,7 @@ function ContactPage() {
 
     const hasErrors = Object.values(newErrors).some((error) => error !== "");
 
-    if (!hasErrors) {
+    if (hasErrors) {
       setSuccessMessage("");
       return;
     }
@@ -63,56 +64,70 @@ function ContactPage() {
   }
 
   return (
-    <main>
-      <h1>Contact Us</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="fullName">Full Name:</label>
-          <input
-            id="fullName"
-            type="text"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-          />
-          {errors.fullName && <p style={{ color: "red" }}>{errors.fullName}</p>}
-        </div>
+    <main className={styles.contactPage}>
+      <section className={styles.contactContainer}>
+        <h1 className={styles.title}>Contact Us</h1>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <div className={styles.formGroup}>
+            <label htmlFor="fullName">Full Name:</label>
+            <input
+              id="fullName"
+              type="text"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
+            {errors.fullName && (
+              <p className={styles.errorMessage}>{errors.fullName}</p>
+            )}
+          </div>
 
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-        </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="email">Email:</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {errors.email && (
+              <p className={styles.errorMessage}>{errors.email}</p>
+            )}
+          </div>
 
-        <div>
-          <label htmlFor="subject">Subject:</label>
-          <input
-            id="subject"
-            type="text"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-          />
-          {errors.subject && <p style={{ color: "red" }}>{errors.subject}</p>}
-        </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="subject">Subject:</label>
+            <input
+              id="subject"
+              type="text"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+            />
+            {errors.subject && (
+              <p className={styles.errorMessage}>{errors.subject}</p>
+            )}
+          </div>
 
-        <div>
-          <label htmlFor="message">Message:</label>
-          <textarea
-            id="message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-          {errors.message && <p style={{ color: "red" }}>{errors.message}</p>}
-        </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="message">Message:</label>
+            <textarea
+              id="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            {errors.message && (
+              <p className={styles.errorMessage}>{errors.message}</p>
+            )}
+          </div>
 
-        <button type="submit">Send Message</button>
-      </form>
+          <button type="submit" className={styles.submitButton}>
+            Send Message
+          </button>
+        </form>
 
-      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
+        {successMessage && (
+          <p className={styles.successMessage}>{successMessage}</p>
+        )}
+      </section>
     </main>
   );
 }
