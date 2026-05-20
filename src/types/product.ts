@@ -20,6 +20,7 @@ export interface Product {
   rating: number;
   tags: string[];
   reviews: Review[];
+  createdAt: string;
 }
 
 export interface ProductResponse {

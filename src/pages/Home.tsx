@@ -8,6 +8,7 @@ function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [sortOption, setSortOption] = useState("newest");
 
   useEffect(() => {
     async function loadProducts() {
@@ -28,9 +29,36 @@ function Home() {
     return <div>Loading...</div>;
   }
 
-  const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(search.toLowerCase()),
-  );
+  const filteredProducts = products.filter((product) => {
+    const searchValue = search.toLowerCase();
+
+    return (
+      product.title.toLowerCase().includes(searchValue) ||
+      product.description.toLowerCase().includes(searchValue) ||
+      product.tags.some((tag) => tag.toLowerCase().includes(searchValue))
+    );
+  });
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortOption === "newest") {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    }
+
+    if (sortOption === "priceLowHigh") {
+      return a.price - b.price;
+    }
+    if (sortOption === "priceHighLow") {
+      return b.price - a.price;
+    }
+
+    if (sortOption === "sale") {
+      const discountA = a.price - a.discountedPrice;
+      const discountB = b.price - b.discountedPrice;
+      return discountB - discountA;
+    }
+
+    return 0;
+  });
 
   return (
     <main className={styles.container}>
@@ -38,23 +66,45 @@ function Home() {
         <h1>Shop the latest products</h1>
         <p>Discover our newest arrivals and best deals</p>
       </section>
+
       <h2 className={styles.title}>Products</h2>
 
       <div className={styles.searchContainer}>
         <input
           type="text"
-          placeholder="Search products..."
+          placeholder="Search products by name, description, or tags..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className={styles.searchInput}
         />
+
+        <select
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+          className={styles.sortSelect}
+        >
+          <option value="newest">Newest Arrivals</option>
+          <option value="priceLowHigh">Price: Low to High</option>
+          <option value="priceHighLow">Price: High to Low</option>
+          <option value="sale">SALE</option>
+        </select>
       </div>
 
-      <div className={styles.productGrid}>
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      <p className={styles.productCount}>
+        Showing {sortedProducts.length} of {products.length} products
+      </p>
+
+      {sortedProducts.length === 0 ? (
+        <p className={styles.noResults}>
+          No products found matching your search.
+        </p>
+      ) : (
+        <div className={styles.productGrid}>
+          {sortedProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      )}
     </main>
   );
 }
