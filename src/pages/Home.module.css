@@ -43,7 +43,7 @@
 .searchInput,
 .sortSelect {
   padding: 1rem;
-  border: 2px solid #02394a;
+  border: 2px solid #aec5cc;
   color: #02394a;
   font-weight: 600;
   border-radius: 14px;
@@ -89,7 +89,7 @@
 .productGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 /* Tablet */

@@ -58,7 +58,7 @@ function ProductPage() {
         <section className={styles.info}>
           <h1 className={styles.title}>{product.title}</h1>
           <p className={styles.description}>{product.description}</p>
-          <p className={styles.rating}>⭐ {product.rating}</p>
+          <p className={styles.rating}>{product.rating}</p>
 
           <div className={styles.priceBox}>
             {hasDiscount && (
@@ -85,13 +85,13 @@ function ProductPage() {
       </div>
 
       <section className={styles.reviews}>
-        <h2>Reviews</h2>
+        <h2>Reviews ⭐</h2>
 
         {product.reviews.length > 0 ? (
           product.reviews.map((review) => (
             <article key={review.id} className={styles.review}>
               <h3>{review.username}</h3>
-              <p>{review.rating}</p>
+              <p>⭐ {review.rating}</p>
               <p>{review.description}</p>
             </article>
           ))
