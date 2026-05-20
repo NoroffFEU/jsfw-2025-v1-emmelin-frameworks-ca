@@ -7,13 +7,10 @@ function Header() {
 
   return (
     <header className={styles.header}>
+      <Link to="/" className={styles.homeLink}>
+        SHOPPING STORE
+      </Link>
       <nav className={styles.nav}>
-        <Link to="/" className={styles.link}>
-          Home
-        </Link>
-        <Link to="/" className={styles.link}>
-          Products
-        </Link>
         <Link to="/contact" className={styles.link}>
           Contact
         </Link>

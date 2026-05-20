@@ -17,7 +17,7 @@ export function ProductCard({ product }: ProductCardProps) {
   );
 
   return (
-    <article>
+    <article className={styles.wrapper}>
       <Link to={`/product/${product.id}`} className={styles.card}>
         {hasDiscount && (
           <span className={styles.discountBadge}>{discountPercentage}%</span>
@@ -31,30 +31,50 @@ export function ProductCard({ product }: ProductCardProps) {
 
         <div className={styles.content}>
           <h2>{product.title}</h2>
-          <p className={styles.rating}>⭐ {product.rating}</p>
-          <div className={styles.priceBox}>
-            {hasDiscount ? (
-              <>
+
+          <div className={styles.buttonContainer}>
+            <div className={styles.priceBox}>
+              {hasDiscount ? (
+                <>
+                  <span className={styles.discountedPrice}>
+                    {product.discountedPrice} kr
+                  </span>
+                  <span className={styles.originalPrice}>
+                    {product.price} kr
+                  </span>
+                </>
+              ) : (
                 <span className={styles.discountedPrice}>
-                  {product.discountedPrice} kr
+                  {product.price} kr
                 </span>
-                <span className={styles.originalPrice}>{product.price} kr</span>
-              </>
-            ) : (
-              <span className={styles.discountedPrice}>{product.price} kr</span>
-            )}
+              )}
+            </div>
+
+            <button
+              className={styles.addButton}
+              onClick={(e) => {
+                e.preventDefault();
+                addToCart(product);
+              }}
+            >
+              Add to Cart
+            </button>
+            <div className={styles.footer}>
+              <div className={styles.tags}>
+                {product.tags.map((tag) => (
+                  <span key={tag} className={styles.tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className={styles.ratingBox}>
+                {" "}
+                {product.rating.toFixed(1)} ★
+              </div>
+            </div>
           </div>
         </div>
       </Link>
-      <button
-        className={styles.addButton}
-        onClick={(e) => {
-          e.preventDefault();
-          addToCart(product);
-        }}
-      >
-        Add to Cart
-      </button>
     </article>
   );
 }

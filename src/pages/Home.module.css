@@ -5,7 +5,7 @@
 }
 
 .hero {
-  padding: 4rem 2rem;
+  padding: 3rem 2rem;
   border-radius: 24px;
   margin-bottom: 3rem;
 
@@ -17,6 +17,7 @@
 }
 
 .hero h1 {
+  color: white;
   font-size: 3rem;
   margin-bottom: 2rem;
   line-height: 1;
@@ -42,17 +43,29 @@
 .searchInput,
 .sortSelect {
   padding: 1rem;
-  border: 1px solid #333;
-  background-color: #111;
-  color: white;
+  border: 2px solid #02394a;
+  color: #02394a;
+  font-weight: 600;
   border-radius: 14px;
   font-size: 0.9rem;
+}
+
+.sortSelect {
+  background: #02394a;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
 .searchInput:focus,
 .sortSelect:focus {
   outline: none;
   border-color: white;
+}
+
+::placeholder {
+  color: #02394a;
+  opacity: 0.7;
 }
 
 .productCount {
