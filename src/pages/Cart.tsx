@@ -25,7 +25,6 @@ function Cart() {
           <div className={styles.cartItems}>
             {cartItems.map((item) => {
               const hasDiscount = item.discountedPrice < item.price;
-              const itemTotal = item.discountedPrice * item.quantity;
 
               return (
                 <article key={item.id} className={styles.cartItem}>
@@ -38,7 +37,6 @@ function Cart() {
 
                   <div className={styles.itemInfo}>
                     <h2>{item.title}</h2>
-                    <p>{item.description}</p>
 
                     <div className={styles.priceBox}>
                       {hasDiscount && (
@@ -46,31 +44,36 @@ function Cart() {
                           {item.price.toFixed(2)} kr
                         </span>
                       )}
-                      <span className={styles.discountedPrice}>
+                      <span
+                        className={
+                          hasDiscount
+                            ? styles.discountedPrice
+                            : styles.normalPrice
+                        }
+                      >
                         {item.discountedPrice.toFixed(2)} kr
                       </span>
                     </div>
 
-                    <p className={styles.itemTotal}>
-                      Total: {itemTotal.toFixed(2)} kr
-                    </p>
+                    <div className={styles.itemActions}>
+                      <div className={styles.quantityControls}>
+                        <button onClick={() => decreaseQuantity(item.id)}>
+                          {" "}
+                          -
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button onClick={() => increaseQuantity(item.id)}>
+                          +
+                        </button>
+                      </div>
 
-                    <div className={styles.quantityControls}>
-                      <button onClick={() => decreaseQuantity(item.id)}>
-                        -
-                      </button>
-                      <span>{item.quantity}</span>
-                      <button onClick={() => increaseQuantity(item.id)}>
-                        +
+                      <button
+                        onClick={() => removeFromCart(item.id)}
+                        className={styles.removeButton}
+                      >
+                        Remove
                       </button>
                     </div>
-
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      className={styles.removeButton}
-                    >
-                      Remove
-                    </button>
                   </div>
                 </article>
               );
@@ -81,10 +84,13 @@ function Cart() {
         <div className={styles.summary}>
           <h2>Total: {cartTotal.toFixed(2)} kr</h2>
 
-          <div className={styles.actions}>
-            <button onClick={clearCart}>Clear Cart</button>
-
-            <Link to="/checkout-success">Checkout</Link>
+          <div>
+            <Link to="/checkout-success" className={styles.checkoutButton}>
+              Checkout
+            </Link>
+            <button className={styles.clearButton} onClick={clearCart}>
+              Clear Cart
+            </button>
           </div>
         </div>
       </section>
