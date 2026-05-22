@@ -1,0 +1,30 @@
+.cartPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.cartPage h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #02394a;
+}
+
+.cartPage p {
+  font-size: 1.2rem;
+  color: #02394a;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+}
+
+.cartPage a {
+  padding: 1rem 2rem;
+  background-color: #02394a;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}

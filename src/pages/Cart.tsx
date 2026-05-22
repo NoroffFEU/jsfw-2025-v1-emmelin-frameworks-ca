@@ -41,7 +41,7 @@ function Cart() {
                     <div className={styles.priceBox}>
                       {hasDiscount && (
                         <span className={styles.originalPrice}>
-                          {item.price.toFixed(2)} kr
+                          {(item.price * item.quantity).toFixed(2)} kr
                         </span>
                       )}
                       <span
@@ -51,7 +51,7 @@ function Cart() {
                             : styles.normalPrice
                         }
                       >
-                        {item.discountedPrice.toFixed(2)} kr
+                        {(item.discountedPrice * item.quantity).toFixed(2)} kr
                       </span>
                     </div>
 
