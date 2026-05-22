@@ -94,7 +94,11 @@ function Cart() {
           <h2>Total: {cartTotal.toFixed(2)} kr</h2>
 
           <div>
-            <Link to="/checkout-success" className={styles.checkoutButton}>
+            <Link
+              to="/checkout-success"
+              className={styles.checkoutButton}
+              onClick={clearCart}
+            >
               Checkout
             </Link>
             <button className={styles.clearButton} onClick={clearCart}>

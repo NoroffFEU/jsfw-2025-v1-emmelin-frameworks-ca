@@ -58,7 +58,6 @@ function ProductPage() {
         <section className={styles.info}>
           <h1 className={styles.title}>{product.title}</h1>
           <p className={styles.description}>{product.description}</p>
-          <p className={styles.rating}>{product.rating}</p>
 
           <div className={styles.priceBox}>
             {hasDiscount && (
