@@ -13,7 +13,16 @@ function Cart() {
   } = useCart();
 
   if (cartItems.length === 0) {
-    return <div>Your cart is empty.</div>;
+    return (
+      <div className={styles.cartPage}>
+        <div className={styles.emptyCart}>
+          Your cart is empty.
+          <Link to="/" className={styles.emptyCartLink}>
+            Back to store
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   return (

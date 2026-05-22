@@ -11,14 +11,15 @@
   max-width: 600px;
   padding: 2rem;
   border-radius: 20px;
-  background-color: #181818;
-  border: 1px solid #2a2a2a;
+  color: white;
+  border: 2px solid #02394a;
 }
 
 .title {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   text-align: center;
+  color: #02394a;
 }
 
 .form {
@@ -26,6 +27,7 @@
   flex-direction: column;
   gap: 1.5rem;
   margin-top: 2rem;
+  text-align: left;
 }
 
 .formGroup {
@@ -36,6 +38,7 @@
 
 .formGroup label {
   font-size: 1.2rem;
+  color: #222;
 }
 
 .formGroup input,
@@ -43,11 +46,11 @@
   width: 100%;
   box-sizing: border-box;
   padding: 1rem;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  color: white;
-  background-color: #1c1c1c;
+  color: #222;
+  background-color: transparent;
 }
 .formGroup textarea {
   resize: vertical;
@@ -57,31 +60,32 @@
 .formGroup input:focus,
 .formGroup textarea:focus {
   outline: none;
-  border-color: white;
+  border-color: #02394a;
 }
 
 .submitButton {
-  padding: 0.75rem;
-  background-color: white;
-  color: black;
+  padding: 0.85rem 1rem;
+  background-color: #02394a;
+  color: white;
   border: none;
   border-radius: 8px;
   font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: 0.2 ease;
+  transition: 0.2s ease;
 }
 .submitButton:hover {
-  background-color: black;
-  color: white;
+  background-color: #012f3a;
+  transform: translateY(-1px);
 }
 
 .errorMessage {
-  color: red;
+  color: #b00020;
   font-size: 0.9rem;
 }
 
 .successMessage {
-  color: green;
+  color: #00b000;
   text-align: center;
   margin-top: 1rem;
 }
@@ -93,7 +97,7 @@
   }
 
   .contactContainer {
-    padding: 1rem;
+    padding: 1.25rem;
   }
   .title {
     font-size: 2rem;
